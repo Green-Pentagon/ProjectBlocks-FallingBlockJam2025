@@ -46,6 +46,17 @@ public class PlayerController : MonoBehaviour
     //public AudioSource crumbleSound;
     //public AudioSource WinSound;
 
+
+
+    float moveX = 0.0f;
+    float moveY = 0.0f;
+    public bool jumped = false;
+    public bool grounded;
+    float velocityMult = 10.0f;
+    Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
+    float YVelocityThreshold = -10.1f; //THIS VALUE MUST BE HIGHER THAN jumpImpulse! the vertical velocity something needs to fall to kill the player
+    //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
+
     IEnumerator DoDeath()
     {
         //dead = true;
@@ -58,15 +69,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.color = Color.white;
 
     }
-
-    float moveX = 0.0f;
-    float moveY = 0.0f;
-    bool jumped = false;
-    float velocityMult = 10.0f;
-    Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
-    float YVelocityThreshold = -10.1f; //THIS VALUE MUST BE HIGHER THAN jumpImpulse! the vertical velocity something needs to fall to kill the player
-
-    //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
 
     // Start is called before the first frame update
     void Start()
@@ -97,9 +99,9 @@ public class PlayerController : MonoBehaviour
     {
         // check if we are on the ground
         Vector2 bottom = new Vector2(transform.position.x, transform.position.y - boxExtents.y);
-        Vector2 hitBoxSize = new Vector2(boxExtents.x * 2.0f, 0.05f);
-        RaycastHit2D result = Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
-        bool grounded = result.collider != null && result.normal.y > 0.9f;
+        //Vector2 hitBoxSize = new Vector2(boxExtents.x * 1.9f, 0.05f);
+        RaycastHit2D result = Physics2D.Raycast(bottom, Vector2.down,0.05f, 1 << LayerMask.NameToLayer("Ground"));//Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
+        grounded = result.collider != null && result.normal.y > 0.9f;
 
         moveX = Input.GetAxis("Horizontal") * velocityMult;
         moveY = Input.GetAxis("Jump");
@@ -125,18 +127,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         
         //check if collision kills with a newly entered collider
-        //if (collision.otherCollider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRB))
-        //{
-        //    Debug.Log("Impact Logged, vertical velocity of " + otherRB.linearVelocityY);
-        //    if (otherRB.linearVelocityY < YVelocityThreshold)
-        //    {
-        //        StartCoroutine(DoDeath());
-        //    }
-        //}
         if (collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
         {
             StartCoroutine(DoDeath());
