@@ -7,6 +7,7 @@ public class DropperBehaviour : MonoBehaviour
 
     public GameObject[] shapePrefabs;
     Vector3 offset = new Vector3(0.5f, 0.0f, 0.0f);
+    int[] spawnerRange = { 0, 10 };
     int[] rotations = {0,90,180,270};
     int cRot;
     float spawnDelay = 3.0f;
@@ -35,6 +36,7 @@ public class DropperBehaviour : MonoBehaviour
         {
             StartCoroutine(SpawnDelay());
             Debug.Log("Object Spawned!");
+            transform.position = new Vector3((int)((Random.Range(spawnerRange[0],(spawnerRange[1] / 10.0f) )) * 10),transform.position.y,transform.position.z);
             GameObject rndObj = shapePrefabs[(int)((Random.Range(0.0f, shapePrefabs.Length / 10.0f)) * 10)];
             GameObject obj = Instantiate(rndObj);
             

@@ -16,7 +16,8 @@ public class CameraBahaviour : MonoBehaviour
     void Update()
     {
         Vector3 player = attachedPlayer.transform.position;
-        Vector3 newCamPos = new Vector3(player.x + cameraOffset.x, player.y + cameraOffset.y, transform.position.z);
+        Vector3 newCamPos = new Vector3(transform.position.x, player.y + cameraOffset.y, transform.position.z);
+        //Vector3 newCamPos = new Vector3(player.x + cameraOffset.x, player.y + cameraOffset.y, transform.position.z);
         transform.position = newCamPos;
     }
 }
