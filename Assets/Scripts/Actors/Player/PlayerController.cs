@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
     float moveY = 0.0f;
     bool jumped = false;
     float velocityMult = 10.0f;
-    Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
+    Vector2 jumpImpulse = new Vector2(0.0f,8.0f);
+    //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
 
     // Start is called before the first frame update
     void Start()
