@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     bool jumped = false;
     float velocityMult = 10.0f;
     Vector2 jumpImpulse = new Vector2(0.0f,8.0f);
-    float YVelocityThreshold = 100.0f; //the vertical velocity something needs to fall to kill the player
+    float YVelocityThreshold = -5.0f; //the vertical velocity something needs to fall to kill the player
 
     //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
 
@@ -127,14 +127,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        
         //check if collision kills with a newly entered collider
-        if (collision.otherCollider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRB))
+        //if (collision.otherCollider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRB))
+        //{
+        //    Debug.Log("Impact Logged, vertical velocity of " + otherRB.linearVelocityY);
+        //    if (otherRB.linearVelocityY < YVelocityThreshold)
+        //    {
+        //        StartCoroutine(DoDeath());
+        //    }
+        //}
+        if (collision.relativeVelocity.y < YVelocityThreshold)
         {
-            if (otherRB.linearVelocityY < YVelocityThreshold)
-            {
-                StartCoroutine(DoDeath());
-            }
+            StartCoroutine(DoDeath());
         }
         
     }
