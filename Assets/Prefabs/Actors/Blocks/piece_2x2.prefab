@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2326239809014719061}
   - component: {fileID: 1031912120043042448}
   - component: {fileID: 8757316805218978578}
+  - component: {fileID: 3559046989277418405}
   m_Layer: 6
   m_Name: piece_2x2
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +134,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &8757316805218978578
 Rigidbody2D:
@@ -160,5 +161,17 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3559046989277418405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189285484682118987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b68d445beed0047905dcc0c6f7d126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

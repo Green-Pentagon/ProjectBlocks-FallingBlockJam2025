@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7813775308716812734}
   - component: {fileID: 9112748480619013248}
   - component: {fileID: 6810463043055347514}
+  - component: {fileID: -5835577586581020010}
   m_Layer: 6
   m_Name: piece_2x3_L
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +115,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &6810463043055347514
 PolygonCollider2D:
@@ -169,3 +170,15 @@ PolygonCollider2D:
       - {x: 1, y: 0.5}
       - {x: 1, y: 1.5}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5835577586581020010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022859018784918811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b68d445beed0047905dcc0c6f7d126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

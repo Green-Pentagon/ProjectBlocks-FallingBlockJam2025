@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5301563517138097732}
   - component: {fileID: 4521680631732554861}
   - component: {fileID: 4367825720302362232}
+  - component: {fileID: -4096190953161029283}
   m_Layer: 6
   m_Name: piece_2x3_S
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f51c9cc96cbc11549bc284d1230fd00e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,7 +115,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &4367825720302362232
 PolygonCollider2D:
@@ -162,12 +163,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1, y: 1.5}
-      - {x: -1, y: -0.5}
-      - {x: 0, y: -0.5}
-      - {x: 0, y: -1.5}
-      - {x: 1, y: -1.5}
-      - {x: 1, y: 0.5}
-      - {x: 0, y: 0.5}
-      - {x: 0, y: 1.5}
+    - - {x: -0.97, y: 1.47}
+      - {x: -0.97, y: -0.48}
+      - {x: 0.02, y: -0.48}
+      - {x: 0.02, y: -1.48}
+      - {x: 0.97, y: -1.48}
+      - {x: 0.97, y: 0.47}
+      - {x: -0.02, y: 0.47}
+      - {x: -0.02, y: 1.47}
   m_UseDelaunayMesh: 0
+--- !u!114 &-4096190953161029283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7176223113498832349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b68d445beed0047905dcc0c6f7d126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
