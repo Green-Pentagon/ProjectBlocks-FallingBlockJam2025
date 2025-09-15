@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
     Vector2 boxExtents;                     //Used for ground detection
+    SpriteRenderer spriteRenderer;
     //Animator animator;
 
     ////-Player physics-
@@ -51,8 +52,10 @@ public class PlayerController : MonoBehaviour
         //animator.SetBool("dead", true);
         //deathSound.Play();
         //uiDeathText.enabled = true;
-
-        yield return new WaitForSeconds(0.5f);// reload the level in 2 seconds
+        spriteRenderer.color = Color.red;
+        Debug.Log("Player died on impact!");
+        yield return new WaitForSeconds(1.0f);// reload the level in 2 seconds
+        spriteRenderer.color = Color.white;
 
     }
 
@@ -61,13 +64,15 @@ public class PlayerController : MonoBehaviour
     bool jumped = false;
     float velocityMult = 10.0f;
     Vector2 jumpImpulse = new Vector2(0.0f,8.0f);
+    float YVelocityThreshold = 100.0f; //the vertical velocity something needs to fall to kill the player
+
     //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         //uiDeathText.enabled = false;
 
         boxExtents = GetComponent<CapsuleCollider2D>().bounds.extents;// get the extent of the collision box
@@ -117,6 +122,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        //check if collision kills with a newly entered collider
+        if (collision.otherCollider.TryGetComponent<Rigidbody2D>(out Rigidbody2D otherRB))
+        {
+            if (otherRB.linearVelocityY < YVelocityThreshold)
+            {
+                StartCoroutine(DoDeath());
+            }
+        }
         
     }
 }
