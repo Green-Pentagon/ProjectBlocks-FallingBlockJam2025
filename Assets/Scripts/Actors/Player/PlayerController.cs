@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
     float moveY = 0.0f;
     bool jumped = false;
     float velocityMult = 10.0f;
-    Vector2 jumpImpulse = new Vector2(0.0f,8.0f);
-    float YVelocityThreshold = -5.0f; //the vertical velocity something needs to fall to kill the player
+    Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
+    float YVelocityThreshold = -10.1f; //THIS VALUE MUST BE HIGHER THAN jumpImpulse! the vertical velocity something needs to fall to kill the player
 
     //an impulse of 10.0f vertical provides a maximum jump height of 6 units, allowing the clearing of 5 units if perfectly vertical (unaffected by slidy phys mat)
 
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         //        StartCoroutine(DoDeath());
         //    }
         //}
-        if (collision.relativeVelocity.y < YVelocityThreshold)
+        if (collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
         {
             StartCoroutine(DoDeath());
         }
