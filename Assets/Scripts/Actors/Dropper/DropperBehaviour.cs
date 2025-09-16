@@ -7,8 +7,8 @@ public class DropperBehaviour : MonoBehaviour
     public AudioSource spawnSound;
     public GameObject[] shapePrefabs;
     public float startDelay = 3.0f;
-    public float endDelay = 0.5f;
-    public float delayDelta = 0.05f;
+    public float endDelay = 0.25f;
+    public float delayDelta = 0.01f;
     
     Vector3 offset = new Vector3(0.5f, 0.0f, 0.0f);
     int[] spawnerRange = { 0, 10 };

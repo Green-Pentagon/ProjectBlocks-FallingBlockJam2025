@@ -321,9 +321,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 958902894}
   - {fileID: 1984432606}
   - {fileID: 947130728}
-  - {fileID: 958902894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
@@ -704,14 +704,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1929243231479093164, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1929243231479093164, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2503717465972485077, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
       propertyPath: m_Name
       value: Player

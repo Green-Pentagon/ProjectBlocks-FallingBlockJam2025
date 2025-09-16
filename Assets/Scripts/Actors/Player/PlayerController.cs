@@ -50,8 +50,9 @@ public class PlayerController : MonoBehaviour
 
     float moveX = 0.0f;
     float moveY = 0.0f;
-    public bool jumped = false;
-    public bool grounded;
+    bool jumped = false;
+    bool grounded;
+    bool died = false;
     float velocityMult = 10.0f;
     Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
     float YVelocityThreshold = -10.1f; //THIS VALUE MUST BE HIGHER THAN jumpImpulse! the vertical velocity something needs to fall to kill the player
@@ -65,9 +66,17 @@ public class PlayerController : MonoBehaviour
         //uiDeathText.enabled = true;
         spriteRenderer.color = Color.red;
         Debug.Log("Player died on impact!");
+        Destroy(rb);
+        Destroy(GetComponent<CapsuleCollider2D>());
+        Destroy(GetComponent<SpriteRenderer>());
         yield return new WaitForSeconds(1.0f);// reload the level in 2 seconds
-        spriteRenderer.color = Color.white;
+        //spriteRenderer.color = Color.white;
 
+    }
+
+    public bool IsPlayerDead()
+    {
+        return died;
     }
 
     // Start is called before the first frame update
@@ -97,6 +106,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (died) return;
+
         // check if we are on the ground
         Vector2 bottom = new Vector2(transform.position.x, transform.position.y - boxExtents.y);
         //Vector2 hitBoxSize = new Vector2(boxExtents.x * 1.9f, 0.05f);
@@ -112,6 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Jump Triggered");
             rb.AddForce(jumpImpulse, ForceMode2D.Impulse);
+            jumpSound.Play();
             jumped = true;
         }
         else if (jumped && moveY == 0.0f && grounded)
@@ -133,6 +145,7 @@ public class PlayerController : MonoBehaviour
         //check if collision kills with a newly entered collider
         if (collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
         {
+            died = true;
             StartCoroutine(DoDeath());
         }
         
