@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     float moveY = 0.0f;
     bool jumped = true;
     bool allowExtraJump = false;
-    bool grounded = false;
+    public bool grounded = false;
     bool died = false;
     int maxExtraJumps = 1;
     int cExtraJumps;
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         // check if we are on the ground
         Vector2 bottom = new Vector2(transform.position.x, transform.position.y - boxExtents.y);
         //Vector2 hitBoxSize = new Vector2(boxExtents.x * 1.9f, 0.05f);
-        RaycastHit2D result = Physics2D.Raycast(bottom, Vector2.down,0.05f, 1 << LayerMask.NameToLayer("Ground"));//Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D result = Physics2D.Raycast(bottom, Vector2.down,0.15f, 1 << LayerMask.NameToLayer("Ground"));//Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
         grounded = result.collider != null && result.normal.y > 0.9f;
 
         moveX = Input.GetAxis("Horizontal") * velocityMult;
