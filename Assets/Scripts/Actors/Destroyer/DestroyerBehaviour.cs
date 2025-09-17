@@ -5,6 +5,7 @@ public class DestroyerBehaviour : MonoBehaviour
 {
     public float speed = 0.01f;
     public float startDelay = 3.0f;
+    BoxCollider2D boxTrigger;
     bool allowMovement = false;
     //public float endSpeed = 0.10f;
     //public float speedIncrement = 0.01f;
@@ -40,6 +41,7 @@ public class DestroyerBehaviour : MonoBehaviour
     void Start()
     {
         //curSpeed = startSpeed;
+        boxTrigger = GetComponent<BoxCollider2D>();
         StartCoroutine(DelayMovement());
     }
 
@@ -51,6 +53,7 @@ public class DestroyerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (allowMovement)
         {
             transform.position = transform.position + new Vector3(0, speed, 0);
@@ -67,11 +70,11 @@ public class DestroyerBehaviour : MonoBehaviour
         //}
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Block"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Block"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 }

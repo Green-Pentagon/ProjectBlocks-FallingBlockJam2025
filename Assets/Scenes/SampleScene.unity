@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.01
-  startDelay: 3
+  startDelay: 10
 --- !u!4 &947130728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8074355805054768426, guid: 2434ddd126e3e724a9cd11b1c494b220, type: 3}

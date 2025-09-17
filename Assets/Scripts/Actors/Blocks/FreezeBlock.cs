@@ -22,6 +22,8 @@ public class FreezeBlock : MonoBehaviour
     {
         if (armed && !collision.collider.CompareTag("Player"))
         {
+            //rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            //rb.freezeRotation = true;
             Destroy(rb);
         }
     }
