@@ -20,7 +20,7 @@ public class FreezeBlock : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (armed && collision.collider.tag != "Player")
+        if (armed && !collision.collider.CompareTag("Player"))
         {
             Destroy(rb);
         }

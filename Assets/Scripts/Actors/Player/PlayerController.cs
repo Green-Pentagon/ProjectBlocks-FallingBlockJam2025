@@ -164,11 +164,21 @@ public class PlayerController : MonoBehaviour
     {
         
         //check if collision kills with a newly entered collider
-        if (collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
+        if (!died && collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
         {
             died = true;
             StartCoroutine(DoDeath());
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!died && collision.CompareTag("Death"))
+        {
+            collision.gameObject.GetComponent<DestroyerBehaviour>().enabled = false;
+            died = true;
+            StartCoroutine(DoDeath());
+        }
     }
 }
