@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public DestroyerBehaviour scriptFromDestroyer;
 
     Rigidbody2D rb;
     Vector2 boxExtents;                     //Used for ground detection
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
     //string nextLevel;
 
     ////-UI Elements-
+    public TextMeshProUGUI heightText;
+    public TextMeshProUGUI timeText;
+    float timeStamp;
+    float startHeight = 0.5f;
     //public TextMeshProUGUI uiDeathText;
     //public TextMeshProUGUI uiLevelInfo;
 
@@ -72,6 +77,8 @@ public class PlayerController : MonoBehaviour
         Destroy(rb);
         Destroy(GetComponent<CapsuleCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
+        scriptFromDestroyer.enabled = false;
+
         yield return new WaitForSeconds(1.0f);// reload the level in 2 seconds
         //spriteRenderer.color = Color.white;
 
@@ -85,6 +92,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeStamp = Time.time;
+
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         //uiDeathText.enabled = false;
@@ -157,6 +166,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!died)
+        {
+            timeText.text = Mathf.Round((Time.time - timeStamp)).ToString("F0") + "s";
+            heightText.text = (transform.position.y - startHeight).ToString("F1") + "m";
+        }
         
     }
 
