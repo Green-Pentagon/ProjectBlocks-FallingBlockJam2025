@@ -50,9 +50,12 @@ public class PlayerController : MonoBehaviour
 
     float moveX = 0.0f;
     float moveY = 0.0f;
-    bool jumped = false;
-    bool grounded;
+    bool jumped = true;
+    bool allowExtraJump = false;
+    bool grounded = false;
     bool died = false;
+    int maxExtraJumps = 1;
+    int cExtraJumps;
     float velocityMult = 10.0f;
     Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
     float YVelocityThreshold = -10.1f; //THIS VALUE MUST BE HIGHER THAN jumpImpulse! the vertical velocity something needs to fall to kill the player
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
         boxExtents = GetComponent<CapsuleCollider2D>().bounds.extents;// get the extent of the collision box
         //animator = GetComponent<Animator>();
 
+        cExtraJumps = maxExtraJumps;
 
         ////-Scene information-
         //curLevel = SceneManager.GetActiveScene().name;
@@ -119,6 +123,12 @@ public class PlayerController : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveX, rb.linearVelocity.y);
 
+        //Only trigger extra jump checks if the player has lifted the key
+        if (!allowExtraJump && moveY == 0 && !grounded && cExtraJumps < maxExtraJumps)
+        {
+            allowExtraJump = true;
+        }
+
         if (!jumped && moveY > 0.0f && grounded)
         {
             Debug.Log("Jump Triggered");
@@ -130,6 +140,17 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Jump Untriggered");
             jumped = false;
+            allowExtraJump = false;
+            cExtraJumps = 0;
+        }
+        else if (jumped && moveY > 0.0f && allowExtraJump)
+        {
+            allowExtraJump = false ;
+            Debug.Log("Extra Jump Triggered");
+            cExtraJumps++;
+            rb.linearVelocity *= new Vector3(1.0f, 0.0f, 1.0f);
+            rb.AddForce(jumpImpulse, ForceMode2D.Impulse);
+            jumpSound.Play();
         }
     }
 
