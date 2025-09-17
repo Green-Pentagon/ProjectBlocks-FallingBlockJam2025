@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     bool allowExtraJump = false;
     public bool grounded = false;
     bool died = false;
-    int maxExtraJumps = 1;
+    public int maxExtraJumps = 1;
     int cExtraJumps;
     float velocityMult = 10.0f;
     Vector2 jumpImpulse = new Vector2(0.0f,10.0f);
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         // check if we are on the ground
         Vector2 bottom = new Vector2(transform.position.x, transform.position.y - boxExtents.y);
         //Vector2 hitBoxSize = new Vector2(boxExtents.x * 1.9f, 0.05f);
-        RaycastHit2D result = Physics2D.Raycast(bottom, Vector2.down,0.15f, 1 << LayerMask.NameToLayer("Ground"));//Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D result = Physics2D.Raycast(bottom, Vector2.down,0.3f, 1 << LayerMask.NameToLayer("Ground"));//Physics2D.BoxCast(bottom, hitBoxSize, 0.0f, new Vector3(0.0f, -1.0f), 0.0f, 1 << LayerMask.NameToLayer("Ground"));
         grounded = result.collider != null && result.normal.y > 0.9f;
 
         moveX = Input.GetAxis("Horizontal") * velocityMult;
@@ -133,17 +133,18 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveX, rb.linearVelocity.y);
 
         //Only trigger extra jump checks if the player has lifted the key
-        if (!allowExtraJump && moveY == 0 && !grounded && cExtraJumps < maxExtraJumps)
+        
+        if (!allowExtraJump && moveY == 0 && cExtraJumps < maxExtraJumps)
         {
             allowExtraJump = true;
         }
-
-        if (!jumped && moveY > 0.0f && grounded)
+        else if (!jumped && moveY > 0.0f && grounded)
         {
             Debug.Log("Jump Triggered");
             rb.AddForce(jumpImpulse, ForceMode2D.Impulse);
             jumpSound.Play();
             jumped = true;
+            allowExtraJump = false;
         }
         else if (jumped && moveY == 0.0f && grounded)
         {
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
             allowExtraJump = false;
             cExtraJumps = 0;
         }
-        else if (jumped && moveY > 0.0f && allowExtraJump)
+        else if (jumped && moveY > 0.0f && allowExtraJump && !grounded)
         {
             allowExtraJump = false ;
             Debug.Log("Extra Jump Triggered");

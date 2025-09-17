@@ -1135,6 +1135,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7039840640992847545, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
+      propertyPath: startDelay
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7481572071183880074, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
       propertyPath: m_Name
       value: Destroyer
