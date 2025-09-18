@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fecb100b7c2d8429be86c651de0e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
   spawnSound: {fileID: 7406824784044395238}
   shapePrefabs:
   - {fileID: 2189285484682118987, guid: e005e8fb4a043dd458229885358bb5f6, type: 3}
@@ -57,6 +58,7 @@ MonoBehaviour:
   startDelay: 3
   endDelay: 1
   delayDelta: 0.1
+  minYDistanceFromPlayer: 15
 --- !u!212 &6484706169472994141
 SpriteRenderer:
   m_ObjectHideFlags: 0

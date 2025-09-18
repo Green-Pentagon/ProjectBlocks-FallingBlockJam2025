@@ -4,11 +4,13 @@ using UnityEngine.InputSystem.Controls;
 
 public class DropperBehaviour : MonoBehaviour
 {
+    public Transform playerTransform;
     public AudioSource spawnSound;
     public GameObject[] shapePrefabs;
     public float startDelay = 3.0f;
     public float endDelay = 0.25f;
     public float delayDelta = 0.01f;
+    float minYDistanceFromPlayer = 24.0f;
     
     Vector3 offset = new Vector3(0.5f, 0.0f, 0.0f);
     int[] spawnerRange = { 0, 10 };
@@ -36,11 +38,17 @@ public class DropperBehaviour : MonoBehaviour
         {
             Debug.LogError("DropperBehaviour.cs: shapePrefabs array is empty!");
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y - playerTransform.position.y < minYDistanceFromPlayer)
+        {
+            transform.position = new Vector3(transform.position.x,playerTransform.position.y + minYDistanceFromPlayer,transform.position.z);
+        }
+
         if (triggerSpawn)
         {
             StartCoroutine(SpawnDelay());
