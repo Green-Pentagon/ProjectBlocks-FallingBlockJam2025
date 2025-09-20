@@ -33,7 +33,10 @@ public class PlayerController : MonoBehaviour
 
     ////-Scene information-
     ////Stores name of current & next level (if there is no next level, "END" is stored instead)
-    //string curLevel;
+    string sceneName;
+    KeyCode resetScene = KeyCode.R;
+    float resetSceneDelay = 1.0f;
+    bool allowSceneReset = false;
     //string nextLevel;
 
     ////-UI Elements-
@@ -85,6 +88,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    IEnumerator DelaySceneReset()
+    {
+        yield return new WaitForSeconds(resetSceneDelay);
+        allowSceneReset = true;
+    }
+
     public bool IsPlayerDead()
     {
         return died;
@@ -93,6 +102,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         defaultPitch = jumpSound.pitch;
         timeStamp = Time.time;
 
@@ -104,6 +114,8 @@ public class PlayerController : MonoBehaviour
         //animator = GetComponent<Animator>();
 
         cExtraJumps = maxExtraJumps;
+
+        StartCoroutine(DelaySceneReset());
 
         ////-Scene information-
         //curLevel = SceneManager.GetActiveScene().name;
@@ -121,6 +133,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKey(resetScene) && allowSceneReset)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        
         if (died) return;
 
         // check if we are on the ground
