@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     float moveY = 0.0f;
     bool jumped = true;
     bool allowExtraJump = false;
-    public bool grounded = false;
+    bool grounded = false;
     bool died = false;
     public int maxExtraJumps = 1;
     int cExtraJumps;
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 20;//15;
+        //Application.targetFrameRate = 20;
 
         uiDeathText.enabled = false;
         sceneName = SceneManager.GetActiveScene().name;
