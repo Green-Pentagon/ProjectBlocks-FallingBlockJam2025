@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraBahaviour : MonoBehaviour
 {
+    public DropperBehaviour dropperScript;
     public Transform attachedPlayer;
     public Vector2 CameraYLowerUpperBounds;
     Camera thisCamera;
@@ -37,7 +38,7 @@ public class CameraBahaviour : MonoBehaviour
         }
         else if (!deathTrigger) {
             deathTrigger = true;
-            GetComponentInChildren<DropperBehaviour>().enabled = false;
+            dropperScript.enabled = false;
             //GetComponent<AudioListener>().enabled = false;
         }
         
