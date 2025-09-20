@@ -1267,7 +1267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
       propertyPath: m_Pitch
-      value: 0.25
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
+      propertyPath: m_Volume
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
       propertyPath: m_Resource
@@ -1424,6 +1428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2197776837342647539, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2503717465972485077, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1480,6 +1488,10 @@ PrefabInstance:
       propertyPath: uiDeathText
       value: 
       objectReference: {fileID: 504760913}
+    - target: {fileID: 7201895532265906078, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
+      propertyPath: milestoneSound
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7201895532265906078, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
       propertyPath: scriptFromDestroyer
       value: 
