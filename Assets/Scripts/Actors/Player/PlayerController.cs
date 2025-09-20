@@ -238,6 +238,7 @@ public class PlayerController : MonoBehaviour
         if (!died && collision.relativeVelocity.y < YVelocityThreshold && collision.collider.tag == "Block")
         {
             died = true;
+            Destroy(collision.collider.gameObject);
             StartCoroutine(DoDeath());
         }
         
