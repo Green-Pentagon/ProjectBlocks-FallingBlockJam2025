@@ -44,12 +44,14 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI timeText;
     float timeStamp;
     float startHeight = 0.5f;
+    float highestHeight = 0.0f;
     public TextMeshProUGUI uiDeathText;
     //public TextMeshProUGUI uiLevelInfo;
 
     ////-Audio Sources-
     public AudioSource jumpSound;
     public AudioSource deathSound;
+    public AudioSource milestoneSound;
     float  defaultPitch;
     //public AudioSource nextLevelSound;
     //public AudioSource crumbleSound;
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour
         Destroy(GetComponent<CapsuleCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
         scriptFromDestroyer.enabled = false;
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.1f);
         //spriteRenderer.color = Color.white;
 
@@ -96,6 +98,20 @@ public class PlayerController : MonoBehaviour
         allowSceneReset = true;
     }
 
+    //IEnumerator MilstoneAchieved()
+    //{
+    //    milestoneSound.Play();
+
+    //    //for (int i = 0; i < 5; i++)
+    //    //{
+    //    //    heightText.alpha = 0.0f;
+    //    //    yield return new WaitForSeconds(0.05f);
+    //    //    heightText.alpha = 1.0f;
+    //    //}
+
+    //    yield return new WaitForSeconds(0.1f);
+    //}
+
     public bool IsPlayerDead()
     {
         return died;
@@ -104,6 +120,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 20;//15;
+
         uiDeathText.enabled = false;
         sceneName = SceneManager.GetActiveScene().name;
         defaultPitch = jumpSound.pitch;
@@ -198,8 +216,17 @@ public class PlayerController : MonoBehaviour
     {
         if (!died)
         {
-            timeText.text = Mathf.Round((Time.time - timeStamp)).ToString("F0") + "s";
-            heightText.text = (transform.position.y - startHeight).ToString("F1") + "m";
+            timeText.text = Mathf.Round((Time.time - timeStamp)).ToString("F0");// + "s";
+            if (highestHeight < transform.position.y - startHeight)
+            {
+                highestHeight = transform.position.y - startHeight;
+                heightText.text = (highestHeight).ToString("F1") + "m";
+                //if (highestHeight % 100.0f <= 0.5f)
+                //{
+                //    StartCoroutine(MilstoneAchieved());
+                //}
+            }
+            
         }
         
     }
