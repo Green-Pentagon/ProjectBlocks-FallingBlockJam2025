@@ -971,10 +971,6 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 348312771}
-    - target: {fileID: 2259180635890278089, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
-      propertyPath: minYDistanceFromPlayer
-      value: 34
-      objectReference: {fileID: 0}
     - target: {fileID: 4197846485278477176, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
       propertyPath: m_Name
       value: Dropper
