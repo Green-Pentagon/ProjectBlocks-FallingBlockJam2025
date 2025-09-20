@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI timeText;
     float timeStamp;
     float startHeight = 0.5f;
-    //public TextMeshProUGUI uiDeathText;
+    public TextMeshProUGUI uiDeathText;
     //public TextMeshProUGUI uiLevelInfo;
 
     ////-Audio Sources-
@@ -76,14 +76,16 @@ public class PlayerController : MonoBehaviour
         //animator.SetBool("dead", true);
         //deathSound.Play();
         //uiDeathText.enabled = true;
-        spriteRenderer.color = Color.red;
-        Debug.Log("Player died on impact!");
+        //spriteRenderer.color = Color.red;
+        //Debug.Log("Player died on impact!");
+
+        uiDeathText.enabled = true;
         Destroy(rb);
         Destroy(GetComponent<CapsuleCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
         scriptFromDestroyer.enabled = false;
 
-        yield return new WaitForSeconds(1.0f);// reload the level in 2 seconds
+        yield return new WaitForSeconds(0.1f);
         //spriteRenderer.color = Color.white;
 
     }
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiDeathText.enabled = false;
         sceneName = SceneManager.GetActiveScene().name;
         defaultPitch = jumpSound.pitch;
         timeStamp = Time.time;
