@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     ////-Audio Sources-
     public AudioSource jumpSound;
     public AudioSource deathSound;
+    float  defaultPitch;
     //public AudioSource nextLevelSound;
     //public AudioSource crumbleSound;
     //public AudioSource WinSound;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultPitch = jumpSound.pitch;
         timeStamp = Time.time;
 
         rb = GetComponent<Rigidbody2D>();
@@ -140,27 +142,34 @@ public class PlayerController : MonoBehaviour
         }
         else if (!jumped && moveY > 0.0f && grounded)
         {
-            Debug.Log("Jump Triggered");
+            //Debug.Log("Jump Triggered");
             rb.AddForce(jumpImpulse, ForceMode2D.Impulse);
+            
             jumpSound.Play();
+            
             jumped = true;
             allowExtraJump = false;
         }
         else if (jumped && moveY == 0.0f && grounded)
         {
-            Debug.Log("Jump Untriggered");
+            //Debug.Log("Jump Untriggered");
             jumped = false;
             allowExtraJump = false;
             cExtraJumps = 0;
+            jumpSound.pitch = defaultPitch;
         }
         else if (jumped && moveY > 0.0f && allowExtraJump && !grounded)
         {
-            allowExtraJump = false ;
-            Debug.Log("Extra Jump Triggered");
+            //Debug.Log("Extra Jump Triggered");
+            allowExtraJump = false;
             cExtraJumps++;
+            
             rb.linearVelocity *= new Vector3(1.0f, 0.0f, 1.0f);
             rb.AddForce(jumpImpulse, ForceMode2D.Impulse);
+            
+            jumpSound.pitch = jumpSound.pitch + 0.25f;
             jumpSound.Play();
+            
         }
     }
 

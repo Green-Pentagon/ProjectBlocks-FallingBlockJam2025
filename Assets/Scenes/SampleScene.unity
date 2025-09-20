@@ -1115,6 +1115,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
+      propertyPath: m_Pitch
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 533c0bfc7ebc6e941b3e87d5cdf569a0, type: 3}
+    - target: {fileID: 7406824784044395238, guid: d119fb871c5562348b11fb6deb1b7597, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 533c0bfc7ebc6e941b3e87d5cdf569a0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1203,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 418628785657583473, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 418628785657583473, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1236,6 +1248,14 @@ PrefabInstance:
     - target: {fileID: 418628785657583473, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039840640992847545, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
+      propertyPath: speed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039840640992847545, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
+      propertyPath: startDelay
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7481572071183880074, guid: ff7f42b7fc9d3d946905e389dc8540f8, type: 3}
       propertyPath: m_Name
@@ -1310,6 +1330,18 @@ PrefabInstance:
       propertyPath: scriptFromDestroyer
       value: 
       objectReference: {fileID: 883696912}
+    - target: {fileID: 7722613253014401942, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722613253014401942, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: a2de96addecd45f4493dfda74eff81c8, type: 3}
+    - target: {fileID: 7722613253014401942, guid: ae1559a70756f354eaea4fc8d8bcafde, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a2de96addecd45f4493dfda74eff81c8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
